@@ -98,10 +98,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -119,10 +115,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -256,6 +248,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -822,10 +818,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -843,10 +835,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -984,6 +972,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -1126,10 +1118,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -1147,10 +1135,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -1284,6 +1268,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -1687,10 +1675,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -1708,10 +1692,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -1845,6 +1825,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -2023,10 +2007,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -2044,10 +2024,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -2181,6 +2157,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -2347,10 +2327,6 @@
         "multiple": true,
         "required": true,
         "types": [
-          {
-            "type": "$evaltype",
-            "named": false
-          },
           {
             "type": "$typefrom",
             "named": false
@@ -2827,10 +2803,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -2848,10 +2820,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -2985,6 +2953,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -3286,10 +3258,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -3307,10 +3275,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -3448,6 +3412,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -3664,10 +3632,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -3685,10 +3649,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -3822,6 +3782,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -4405,10 +4369,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -4426,10 +4386,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -4563,6 +4519,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -5382,10 +5342,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -5403,10 +5359,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -5548,6 +5500,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -5695,10 +5651,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -5716,10 +5668,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -5853,6 +5801,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -6504,10 +6456,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -6525,10 +6473,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -6662,6 +6606,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -7505,10 +7453,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -7526,10 +7470,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -7663,6 +7603,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -7751,10 +7695,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -7772,10 +7712,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -7909,6 +7845,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -8548,10 +8488,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -8569,10 +8505,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -8706,6 +8638,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -8986,10 +8922,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -9007,10 +8939,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -9152,6 +9080,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -9402,10 +9334,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -9423,10 +9351,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -9560,6 +9484,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -10400,10 +10328,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -10421,10 +10345,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -10558,6 +10478,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -10710,10 +10634,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -10731,10 +10651,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -10868,6 +10784,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -11431,10 +11351,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -11452,10 +11368,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -11591,6 +11503,10 @@
             "named": true
           },
           {
+            "type": "lengthof",
+            "named": false
+          },
+          {
             "type": "maybe_deref_expr",
             "named": true
           },
@@ -11677,10 +11593,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -11698,10 +11610,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -11839,6 +11747,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -12012,10 +11924,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -12033,10 +11941,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -12176,6 +12080,10 @@
             "named": true
           },
           {
+            "type": "lengthof",
+            "named": false
+          },
+          {
             "type": "maybe_deref_expr",
             "named": true
           },
@@ -12278,10 +12186,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -12299,10 +12203,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -12436,6 +12336,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -12621,10 +12525,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -12642,10 +12542,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -12783,6 +12679,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -13463,10 +13363,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -13484,10 +13380,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -13625,6 +13517,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -13727,10 +13623,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -13748,10 +13640,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -13889,6 +13777,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -13998,10 +13890,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -14019,10 +13907,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -14156,6 +14040,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -14677,10 +14565,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -14698,10 +14582,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -14837,6 +14717,10 @@
             "named": true
           },
           {
+            "type": "lengthof",
+            "named": false
+          },
+          {
             "type": "maybe_deref_expr",
             "named": true
           },
@@ -14923,10 +14807,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -14944,10 +14824,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -15085,6 +14961,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -15264,10 +15144,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -15285,10 +15161,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -15422,6 +15294,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -15510,10 +15386,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -15531,10 +15403,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -15668,6 +15536,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -15756,10 +15628,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -15777,10 +15645,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -15914,6 +15778,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -16037,10 +15905,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -16058,10 +15922,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -16195,6 +16055,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -16775,10 +16639,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -16796,10 +16656,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -16933,6 +16789,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -17079,10 +16939,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -17100,10 +16956,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -17237,6 +17089,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -17383,10 +17239,6 @@
             "named": false
           },
           {
-            "type": "$assignable",
-            "named": false
-          },
-          {
             "type": "$defined",
             "named": false
           },
@@ -17404,10 +17256,6 @@
           },
           {
             "type": "$feature",
-            "named": false
-          },
-          {
-            "type": "$is_const",
             "named": false
           },
           {
@@ -17541,6 +17389,10 @@
           {
             "type": "lambda_expr",
             "named": true
+          },
+          {
+            "type": "lengthof",
+            "named": false
           },
           {
             "type": "maybe_deref_expr",
@@ -17800,10 +17652,6 @@
     "named": false
   },
   {
-    "type": "$assignable",
-    "named": false
-  },
-  {
     "type": "$case",
     "named": false
   },
@@ -17852,10 +17700,6 @@
     "named": false
   },
   {
-    "type": "$evaltype",
-    "named": false
-  },
-  {
     "type": "$exec",
     "named": false
   },
@@ -17881,10 +17725,6 @@
   },
   {
     "type": "$include",
-    "named": false
-  },
-  {
-    "type": "$is_const",
     "named": false
   },
   {
@@ -18232,10 +18072,6 @@
     "named": false
   },
   {
-    "type": "cenum",
-    "named": false
-  },
-  {
     "type": "char",
     "named": false
   },
@@ -18250,6 +18086,10 @@
   {
     "type": "const_ident",
     "named": true
+  },
+  {
+    "type": "constdef",
+    "named": false
   },
   {
     "type": "continue",
@@ -18392,11 +18232,11 @@
     "named": false
   },
   {
-    "type": "isz",
+    "type": "len",
     "named": false
   },
   {
-    "type": "len",
+    "type": "lengthof",
     "named": false
   },
   {
@@ -18454,6 +18294,10 @@
   },
   {
     "type": "switch",
+    "named": false
+  },
+  {
+    "type": "sz",
     "named": false
   },
   {

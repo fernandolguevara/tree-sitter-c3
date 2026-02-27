@@ -189,7 +189,7 @@ export default grammar({
     // Doc comments and contracts
     // -------------------------
     // Optional ':' is deprecated
-    _doc_comment_description: $ => seq(optional(':'), field('description', $.string_expr)),
+    _doc_comment_description: $ => seq(':', field('description', $.string_expr)),
     doc_comment_contract_descriptor: _ => token(/\[&?(?:in|out|inout)\]/),
     doc_comment_contract: $ => choice(
       seq(
@@ -357,6 +357,7 @@ export default grammar({
       seq('[', ']', '='),
       'len',
       '~',
+      '<',
       '+',
       '-',
       '*',
@@ -416,12 +417,11 @@ export default grammar({
 
     // Module
     // -------------------------
-    generic_param_list_deprecated: $ => seq('{', commaSep1($._generic_param), '}'), // Deprecated
     module_declaration: $ => seq(
       optional($.doc_comment),
       'module',
       field('path', $.path_ident),
-      optional(choice($.generic_param_list, alias($.generic_param_list_deprecated, $.generic_param_list))),
+      optional($.generic_param_list),
       optional($.attributes),
       ';'
     ),
@@ -636,8 +636,7 @@ export default grammar({
       optional($.doc_comment),
       choice(
         'enum',
-        'cenum',
-        seq('const', 'enum'),
+        'constdef',
       ),
       field('name', $.type_ident),
       optional($.interface_impl_list),
@@ -1275,6 +1274,7 @@ export default grammar({
       seq($.lambda_declaration, field('lambda_body', $.compound_stmt)),
 
       // Compile-time expressions
+      seq('lengthof', '(', $._expr, ')'),
       '$vacount',
       '$vaconst',
       '$vaarg',
@@ -1283,7 +1283,6 @@ export default grammar({
       seq(
         choice(
           '$eval',
-          '$is_const',
           '$sizeof',
           '$stringify',
           '$kindof'
@@ -1293,7 +1292,6 @@ export default grammar({
       seq('$embed', '(', commaSep($._expr), ')'),
       seq('$defined', '(', commaSep($._decl_or_expr), ')'),
       seq('$feature', '(', $.const_ident, ')'),
-      seq('$assignable', '(', $._expr, ',', $._expr, ')'), // Deprecated >= 0.7.4
     )),
 
     // Initializers
@@ -1587,7 +1585,7 @@ export default grammar({
       'float128',
       'iptr',
       'uptr',
-      'isz',
+      'sz',
       'usz',
       'fault',
       'any',
@@ -1602,7 +1600,6 @@ export default grammar({
         choice(
           '$typeof',
           '$typefrom',
-          '$evaltype', // Deprecated >= 0.7.2
         ),
         $.paren_expr,
       ),
