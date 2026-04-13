@@ -304,8 +304,7 @@ module foo;
       (ident))))
 
 ================================================================================
-Error doc
-:error
+Doc mixed content
 ================================================================================
 <*
  Hello
@@ -316,3 +315,14 @@ module foo;
 
 --------------------------------------------------------------------------------
 
+(source_file
+  (module_declaration
+    (doc_comment
+      (doc_comment_text)
+      (doc_comment_contract
+        (at_ident)
+        (ident_expr
+          (ident)))
+      (doc_comment_text))
+    (path_ident
+      (ident))))

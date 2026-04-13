@@ -425,7 +425,7 @@
 
 (doc_comment) @comment.documentation
 
-(doc_comment_text) @spell
+(doc_comment_text) @comment.documentation @spell
 
 (doc_comment_contract
   name: (_) @attribute)

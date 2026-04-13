@@ -225,6 +225,7 @@ export default grammar({
       // NOTE parsed by scanner.c (scan_doc_comment_text)
       optional($.doc_comment_text),
       repeat($.doc_comment_contract),
+      optional($.doc_comment_text),
       '*>',
     ),
     block_comment: $ => seq(

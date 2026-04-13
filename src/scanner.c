@@ -70,6 +70,7 @@ static bool is_whitespace(int32_t c) {
 static bool scan_doc_comment_text(TSLexer *lexer) {
   // We stop at EOF, '@' or '*>'
   int32_t prev_c = '\n';
+  bool first_non_ws_seen = false;
   bool has_docs_text = false;
   while (true) {
     if (lexer->eof(lexer)) {
@@ -89,6 +90,12 @@ static bool scan_doc_comment_text(TSLexer *lexer) {
 
     lexer->advance(lexer, false);
     if (!is_whitespace(c)) {
+      if (!first_non_ws_seen) {
+        first_non_ws_seen = true;
+        if (c == ':') {
+          return false;
+        }
+      }
       lexer->mark_end(lexer);
       has_docs_text = true;
       prev_c = c;
