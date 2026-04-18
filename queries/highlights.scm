@@ -91,7 +91,6 @@
 ] @keyword
 
 [
-  "$alignof"
   "$assert"
   "$case"
   "$default"
@@ -106,17 +105,12 @@
   "$eval"
   "$error"
   "$exec"
-  "$extnameof"
   "$feature"
   "$for"
   "$foreach"
   "$if"
   "$include"
-  "$kindof"
-  "$nameof"
-  "$offsetof"
-  "$qnameof"
-  "$sizeof"
+  "$reflect"
   "$stringify"
   "$switch"
   "$typefrom"

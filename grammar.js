@@ -21,8 +21,8 @@ const INT = /[0-9](_?[0-9])*/;
 const HINT = /[a-fA-F0-9](_?[a-fA-F0-9])*/;
 const OINT = /[0-7](_?[0-7])*/;
 const BINT = /[0-1](_?[0-1])*/;
-// NOTE ll/ull suffixes experimental for C3 >= 0.7.2
-const INTTYPE = /[UuIi](8|16|32|64|128)|[Uu][Ll]{0,2}|[Ll]{1,2}/;
+// NOTE C3 >= 0.8 dropped iXX/uXX suffixes
+const INTTYPE = /[Uu][Ll]{0,2}|[Ll]{1,2}/;
 const IDENT       = /_*[a-z][_a-zA-Z0-9]*/;
 const TYPE_IDENT  = /_*[A-Z][_A-Z0-9]*[a-z][_a-zA-Z0-9]*/;
 const CONST_IDENT = /_*[A-Z][_A-Z0-9]*/;
@@ -192,18 +192,18 @@ export default grammar({
     _doc_comment_description: $ => seq(':', field('description', $.string_expr)),
     doc_comment_contract_descriptor: _ => token(/\[&?(?:in|out|inout)\]/),
     doc_comment_contract: $ => choice(
-      seq(
+      prec(3, seq(
         field('name', alias('@param', $.at_ident)),
         optional(field('mutability_contract', $.doc_comment_contract_descriptor)),
         field('parameter', choice($._arg_ident, '...')),
         optional($._doc_comment_description),
-      ),
-      seq(
+      )),
+      prec(3, seq(
         field('name', alias(choice('@ensure', '@require'), $.at_ident)),
         commaSep1($._expr),
         optional($._doc_comment_description),
-      ),
-      seq(
+      )),
+      prec(3, seq(
         field('name', alias('@return', $.at_ident)),
         choice(
           seq(
@@ -211,21 +211,23 @@ export default grammar({
             commaSep1($._expr),
             optional($._doc_comment_description),
           ),
-          optional(field('description', $.string_expr)),
+          field('description', $.string_expr),
         ),
-      ),
+      )),
       // Other @idents
-      seq(
+      prec(1, seq(
+        field('name', alias(choice('@pure', '@deprecated', '@note', '@warning'), $.at_ident)),
+      )),
+      prec(1, seq(
         field('name', $.at_ident),
-        optional(field('description', $.string_expr)),
-      ),
+        field('description', $.string_expr),
+      )),
     ),
     doc_comment: $ => seq(
       '<*',
       // NOTE parsed by scanner.c (scan_doc_comment_text)
       optional($.doc_comment_text),
       repeat($.doc_comment_contract),
-      optional($.doc_comment_text),
       '*>',
     ),
     block_comment: $ => seq(
@@ -1227,14 +1229,6 @@ export default grammar({
     ),
     type_paren_expr: $ => prec(2, seq('(', $._type_expr, ')')),
 
-    _ct_call: $ => choice(
-      '$alignof',
-      '$extnameof',
-      '$nameof',
-      '$offsetof',
-      '$qnameof',
-    ),
-
     // Precedence over _expr
     flat_path: $ => prec(1, seq(
       $._base_expr,
@@ -1280,13 +1274,11 @@ export default grammar({
       '$vaconst',
       '$vaarg',
       '$vaexpr',
-      seq($._ct_call, '(', $.flat_path, ')'),
       seq(
         choice(
           '$eval',
-          '$sizeof',
           '$stringify',
-          '$kindof'
+          '$reflect',
         ),
         $.paren_expr,
       ),
@@ -1376,8 +1368,6 @@ export default grammar({
       field('operator', choice(
         '~',
         seq('~', '!'),
-        '?',
-        seq('?', '!'),
       )),
     )),
 
@@ -1558,7 +1548,7 @@ export default grammar({
     type_access_expr: $ => seq(
       prec(PREC.FIELD, seq(
         field('argument', $._type_expr),
-        '.',
+        '::',
       )),
       $._access_ident_expr,
     ),
@@ -1591,6 +1581,7 @@ export default grammar({
       'fault',
       'any',
       'typeid',
+      'untypedlist',
     ),
 
     _base_type: $ => prec.right(choice(

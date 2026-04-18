@@ -231,7 +231,7 @@ alias @intHello = foo::@hello{int};
       (const_ident)))
   (alias_declaration
     (ident)
-    (type_access_expr
+    (field_expr
       (type
         (path_type_ident
           (type_ident)))
@@ -239,7 +239,7 @@ alias @intHello = foo::@hello{int};
         (ident))))
   (alias_declaration
     (ident)
-    (type_access_expr
+    (field_expr
       (type
         (path_type_ident
           (module_resolution
@@ -250,7 +250,7 @@ alias @intHello = foo::@hello{int};
         (ident))))
   (alias_declaration
     (at_ident)
-    (type_access_expr
+    (field_expr
       (type
         (path_type_ident
           (type_ident)))
@@ -258,7 +258,7 @@ alias @intHello = foo::@hello{int};
         (at_ident))))
   (alias_declaration
     (at_ident)
-    (type_access_expr
+    (field_expr
       (type
         (path_type_ident
           (module_resolution
@@ -268,7 +268,7 @@ alias @intHello = foo::@hello{int};
         (at_ident))))
   (alias_declaration
     (at_ident)
-    (type_access_expr
+    (field_expr
       (type
         (generic_type_ident
           (path_type_ident
@@ -293,7 +293,7 @@ alias @intHello = foo::@hello{int};
           (base_type_name)))))
   (alias_declaration
     (ident)
-    (type_access_expr
+    (field_expr
       (type
         (generic_type_ident
           (path_type_ident
@@ -347,7 +347,7 @@ extern fn void printf(char* str, ...);
 
 extern fn int sum(int... ints);
 
-macro asdf($theta, double[2], $Type = double[2]**?) => $Type.nameof;
+macro asdf($theta, double[2], $Type = double[2]**?) => $Type::name;
 
 --------------------------------------------------------------------------------
 

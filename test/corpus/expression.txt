@@ -3,23 +3,23 @@ Integer literals
 ================================================================================
 
 int a = 128;
-short a = 128i16;
-ushort a = 128u16;
-int b = 3_000_000;
-long b = 3_000_000i64;
-ulong b = 3_000_000u64;
-uint c = 4_000u;
-uint c = 4_000u32;
-int c = 4_000i32;
-long d = 0xC4_FF;
-long d = 0xC4_FFi128;
-ulong d = 0xC4_FFu128;
+short a = 128;
+ushort a = 128u;
+char a = 0b1001_1001;
+ichar a = 0b0111_1111;
+uint b = 3_000_000u;
+long b = 3_000_000l;
+ulong b = 3_000_000ul;
+sz c = 4_000l;
+usz c = 4_000ul;
+int d = 0xC4_FF;
+uint d = 0xC4_FFu;
+long d = 0xC4_FFll;
+ulong d = 0xC4_FFull;
 int e = 0o775_111;
-int e = 0o775_111i16;
-uint e = 0o775_111u16;
-char f = 0b1001_1001;
-ichar f = 0b1001_1001i8;
-char f = 0b1001_1001u8;
+uint e = 0o775_111u;
+sz e = 0o775_111l;
+usz e = 0o775_111ul;
 
 --------------------------------------------------------------------------------
 
@@ -1371,7 +1371,7 @@ fn void main() {
 
   a || b ? b : c ?: 1 ? d : 1;
   a || b ? b : c ? 1.f : 1 ? d : 1;
-  a && b ?!;
+  a && b ~!;
   a || b && 1 > b ?: 1 >>= 4;
   a && b || 1 > b ? b : 1 + 1 >>= 4;
 

@@ -9,6 +9,11 @@ Grammar parity updates against current `c3c` parser behavior.
 - Broaden generic brace acceptance after base types (`usz{}`, `int{4}`, `$typeof(x){T}`)
 - Allow non-compound bodies in `do ... while` statements
 - Improve compile-time switch condition/case acceptance for type forms (for example `$switch $typeof(x):` and `$case int..float:`)
+- Drop deprecated `iXX`/`uXX` integer literal suffixes
+- Drop deprecated compile-time builtins (`$alignof`, `$sizeof`, `$kindof`, `$nameof`, `$extnameof`, `$qnameof`, `$offsetof`)
+- Add `$reflect(...)` expression support
+- Switch type member access from `Type.member` to `Type::member`
+- Add `untypedlist` as a base type
 - Keep named enum-associated fields (for example `FOO {a: 1}`) intentionally unsupported for now
 
 ## 0.8.3
