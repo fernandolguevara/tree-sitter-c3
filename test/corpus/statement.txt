@@ -772,7 +772,7 @@ Compiler parity compile-time switch conditions
 
 fn void main() {
   int a;
-  $switch $typeof(a):
+  $switch $Typeof(a):
     $case int..float:
       print(1);
   $endswitch

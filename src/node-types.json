@@ -126,10 +126,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -143,6 +139,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -194,11 +202,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -309,11 +325,63 @@
       "required": false,
       "types": [
         {
+          "type": "assignment_expr",
+          "named": true
+        },
+        {
           "type": "attributes",
           "named": true
         },
         {
+          "type": "binary_expr",
+          "named": true
+        },
+        {
+          "type": "builtin",
+          "named": true
+        },
+        {
+          "type": "builtin_const",
+          "named": true
+        },
+        {
+          "type": "bytes_expr",
+          "named": true
+        },
+        {
+          "type": "call_expr",
+          "named": true
+        },
+        {
+          "type": "cast_expr",
+          "named": true
+        },
+        {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "const_ident",
+          "named": true
+        },
+        {
+          "type": "declaration",
+          "named": true
+        },
+        {
           "type": "doc_comment",
+          "named": true
+        },
+        {
+          "type": "elvis_orelse_expr",
+          "named": true
+        },
+        {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
+          "type": "field_expr",
           "named": true
         },
         {
@@ -325,6 +393,38 @@
           "named": true
         },
         {
+          "type": "ident",
+          "named": true
+        },
+        {
+          "type": "ident_expr",
+          "named": true
+        },
+        {
+          "type": "initializer_list",
+          "named": true
+        },
+        {
+          "type": "integer_literal",
+          "named": true
+        },
+        {
+          "type": "lambda_declaration",
+          "named": true
+        },
+        {
+          "type": "lambda_expr",
+          "named": true
+        },
+        {
+          "type": "maybe_deref_expr",
+          "named": true
+        },
+        {
+          "type": "optional_expr",
+          "named": true
+        },
+        {
           "type": "paren_expr",
           "named": true
         },
@@ -333,7 +433,59 @@
           "named": true
         },
         {
+          "type": "raw_string_literal",
+          "named": true
+        },
+        {
+          "type": "real_literal",
+          "named": true
+        },
+        {
+          "type": "rethrow_expr",
+          "named": true
+        },
+        {
+          "type": "string_expr",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "subscript_expr",
+          "named": true
+        },
+        {
+          "type": "ternary_expr",
+          "named": true
+        },
+        {
+          "type": "trailing_generic_expr",
+          "named": true
+        },
+        {
           "type": "type",
+          "named": true
+        },
+        {
+          "type": "type_access_expr",
+          "named": true
+        },
+        {
+          "type": "typed_initializer_list",
+          "named": true
+        },
+        {
+          "type": "unary_expr",
+          "named": true
+        },
+        {
+          "type": "update_expr",
+          "named": true
+        },
+        {
+          "type": "var_declaration",
           "named": true
         }
       ]
@@ -430,7 +582,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -665,7 +825,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -810,10 +978,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -827,6 +991,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -882,11 +1058,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -1082,10 +1266,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -1099,6 +1279,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -1150,11 +1342,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -1393,7 +1593,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -1607,10 +1815,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -1624,6 +1828,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -1675,11 +1891,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -1911,10 +2135,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -1928,6 +2148,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -1979,11 +2211,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -2176,11 +2416,11 @@
         "required": true,
         "types": [
           {
-            "type": "$typefrom",
+            "type": "$Typefrom",
             "named": false
           },
           {
-            "type": "$typeof",
+            "type": "$Typeof",
             "named": false
           },
           {
@@ -2260,6 +2500,10 @@
         },
         {
           "type": "elvis_orelse_expr",
+          "named": true
+        },
+        {
+          "type": "enum_access_expr",
           "named": true
         },
         {
@@ -2493,7 +2737,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -2671,10 +2923,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -2688,6 +2936,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -2739,11 +2999,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -2949,7 +3217,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -3094,10 +3370,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -3111,6 +3383,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -3166,11 +3450,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -3440,10 +3732,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -3457,6 +3745,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -3508,11 +3808,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -3706,7 +4014,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -3883,7 +4199,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -4141,10 +4465,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -4158,6 +4478,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -4209,11 +4541,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -4423,7 +4763,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -4581,7 +4929,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -4758,7 +5114,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -4935,7 +5299,185 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
+          "named": true
+        },
+        {
+          "type": "ident_expr",
+          "named": true
+        },
+        {
+          "type": "initializer_list",
+          "named": true
+        },
+        {
+          "type": "integer_literal",
+          "named": true
+        },
+        {
+          "type": "lambda_declaration",
+          "named": true
+        },
+        {
+          "type": "lambda_expr",
+          "named": true
+        },
+        {
+          "type": "maybe_deref_expr",
+          "named": true
+        },
+        {
+          "type": "optional_expr",
+          "named": true
+        },
+        {
+          "type": "paren_expr",
+          "named": true
+        },
+        {
+          "type": "raw_string_literal",
+          "named": true
+        },
+        {
+          "type": "real_literal",
+          "named": true
+        },
+        {
+          "type": "rethrow_expr",
+          "named": true
+        },
+        {
+          "type": "string_expr",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "subscript_expr",
+          "named": true
+        },
+        {
+          "type": "ternary_expr",
+          "named": true
+        },
+        {
+          "type": "trailing_generic_expr",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        },
+        {
+          "type": "type_access_expr",
+          "named": true
+        },
+        {
+          "type": "typed_initializer_list",
+          "named": true
+        },
+        {
+          "type": "unary_expr",
+          "named": true
+        },
+        {
+          "type": "update_expr",
+          "named": true
+        },
+        {
+          "type": "var_declaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ct_expand_stmt",
+    "named": true,
+    "fields": {
+      "lambda_body": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "compound_stmt",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "assignment_expr",
+          "named": true
+        },
+        {
+          "type": "attributes",
+          "named": true
+        },
+        {
+          "type": "binary_expr",
+          "named": true
+        },
+        {
+          "type": "builtin",
+          "named": true
+        },
+        {
+          "type": "builtin_const",
+          "named": true
+        },
+        {
+          "type": "bytes_expr",
+          "named": true
+        },
+        {
+          "type": "call_expr",
+          "named": true
+        },
+        {
+          "type": "cast_expr",
+          "named": true
+        },
+        {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "const_ident",
+          "named": true
+        },
+        {
+          "type": "declaration",
+          "named": true
+        },
+        {
+          "type": "elvis_orelse_expr",
+          "named": true
+        },
+        {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
+          "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -5070,10 +5612,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -5091,6 +5629,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -5146,11 +5696,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -5351,10 +5909,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -5368,6 +5922,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -5419,11 +5985,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -5643,7 +6217,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -5942,7 +6524,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -6120,10 +6710,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -6137,6 +6723,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -6188,11 +6786,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -6842,7 +7448,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -7085,10 +7699,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -7102,6 +7712,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -7153,11 +7775,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -7299,10 +7929,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -7316,6 +7942,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -7367,11 +8005,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -7503,6 +8149,32 @@
     }
   },
   {
+    "type": "enum_access_expr",
+    "named": true,
+    "fields": {
+      "argument": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      },
+      "field": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "access_ident",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "enum_arg",
     "named": true,
     "fields": {
@@ -7566,7 +8238,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -7898,7 +8578,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -8056,10 +8744,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -8073,6 +8757,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -8124,11 +8820,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -8296,10 +9000,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -8317,6 +9017,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -8372,11 +9084,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -8680,10 +9400,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -8697,6 +9413,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -8748,11 +9476,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -9244,7 +9980,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -9446,6 +10190,10 @@
         {
           "type": "module_resolution",
           "named": true
+        },
+        {
+          "type": "path_const_ident",
+          "named": true
         }
       ]
     }
@@ -9642,10 +10390,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -9659,6 +10403,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -9710,11 +10466,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -9920,10 +10684,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -9937,6 +10697,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -9988,11 +10760,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -10147,7 +10927,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -10605,10 +11393,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -10622,6 +11406,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -10673,11 +11469,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -10819,10 +11623,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -10836,6 +11636,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -10891,11 +11703,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -11122,10 +11942,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -11139,6 +11955,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -11194,11 +12022,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -11356,10 +12192,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -11373,6 +12205,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -11424,11 +12268,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -11663,10 +12515,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -11683,7 +12531,19 @@
             "named": false
           },
           {
+            "type": ".",
+            "named": false
+          },
+          {
             "type": "...",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -11735,11 +12595,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -11935,7 +12803,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -12097,7 +12973,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -12259,7 +13143,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -12373,6 +13265,25 @@
     }
   },
   {
+    "type": "path_const_ident",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "const_ident",
+          "named": true
+        },
+        {
+          "type": "module_resolution",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "path_ident",
     "named": true,
     "fields": {},
@@ -12461,10 +13372,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -12478,6 +13385,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -12533,11 +13452,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -12693,10 +13620,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -12710,6 +13633,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -12765,11 +13700,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -12932,10 +13875,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -12949,6 +13888,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -13000,11 +13951,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -13199,7 +14158,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -13324,6 +14291,10 @@
         },
         {
           "type": "ct_exec_stmt",
+          "named": true
+        },
+        {
+          "type": "ct_expand_stmt",
           "named": true
         },
         {
@@ -13575,10 +14546,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -13592,6 +14559,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -13643,11 +14622,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -13789,10 +14776,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -13806,6 +14789,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -13861,11 +14856,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -14098,10 +15101,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -14115,6 +15114,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -14166,11 +15177,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -14312,10 +15331,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -14329,6 +15344,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -14380,11 +15407,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -14526,10 +15561,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -14543,6 +15574,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -14594,11 +15637,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -14775,10 +15826,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -14792,6 +15839,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -14843,11 +15902,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -15035,6 +16102,10 @@
         },
         {
           "type": "elvis_orelse_expr",
+          "named": true
+        },
+        {
+          "type": "enum_access_expr",
           "named": true
         },
         {
@@ -15269,7 +16340,15 @@
           "named": true
         },
         {
+          "type": "enum_access_expr",
+          "named": true
+        },
+        {
           "type": "field_expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -15473,10 +16552,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -15490,6 +16565,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -15541,11 +16628,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -15745,10 +16840,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -15762,6 +16853,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -15813,11 +16916,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -16017,10 +17128,6 @@
             "named": false
           },
           {
-            "type": "$vacount",
-            "named": false
-          },
-          {
             "type": "$vaexpr",
             "named": false
           },
@@ -16034,6 +17141,18 @@
           },
           {
             "type": ",",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
             "named": false
           },
           {
@@ -16085,11 +17204,19 @@
             "named": true
           },
           {
+            "type": "enum_access_expr",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "field_expr",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -16366,6 +17493,14 @@
     "named": false
   },
   {
+    "type": "$Typefrom",
+    "named": false
+  },
+  {
+    "type": "$Typeof",
+    "named": false
+  },
+  {
     "type": "$assert",
     "named": false
   },
@@ -16422,6 +17557,10 @@
     "named": false
   },
   {
+    "type": "$expand",
+    "named": false
+  },
+  {
     "type": "$feature",
     "named": false
   },
@@ -16454,23 +17593,11 @@
     "named": false
   },
   {
-    "type": "$typefrom",
-    "named": false
-  },
-  {
-    "type": "$typeof",
-    "named": false
-  },
-  {
     "type": "$vaarg",
     "named": false
   },
   {
     "type": "$vaconst",
-    "named": false
-  },
-  {
-    "type": "$vacount",
     "named": false
   },
   {

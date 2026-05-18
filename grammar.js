@@ -292,6 +292,7 @@ export default grammar({
     )),
     _module_path: $ => repeat1($.module_resolution),
     path_ident: $ => seq(optional($._module_path), $.ident),
+    path_const_ident: $ => prec(1, seq($._module_path, $.const_ident)),
     path_type_ident: $ => seq(optional($._module_path), $.type_ident),
     path_at_type_ident: $ => seq(optional($._module_path), $.at_type_ident),
 
@@ -406,6 +407,7 @@ export default grammar({
       $.ct_echo_stmt,
       $.ct_include_stmt,
       $.ct_exec_stmt,
+      $.ct_expand_stmt,
 
       $.struct_declaration,
       $.enum_declaration,
@@ -479,7 +481,7 @@ export default grammar({
           optional($.generic_param_list),
           optional($.attributes),
           '=',
-          choice($._type_expr, $.func_signature)
+          choice($._expr, $.func_signature)
         ),
       ),
       ';'
@@ -1134,6 +1136,10 @@ export default grammar({
     // -------------------------
     ct_exec_stmt: $ => seq('$exec', '(', commaSep($._expr), ')', optional($.attributes), ';'),
 
+    // Compile Time Expand Statement
+    // -------------------------
+    ct_expand_stmt: $ => seq('$expand', '(', $._expr, ')', optional($.attributes), ';'),
+
     // Compile Time Echo Statement
     // -------------------------
     ct_echo_stmt: $ => seq('$echo', $._expr, ';'),
@@ -1220,6 +1226,7 @@ export default grammar({
     // -------------------------
     ident_expr: $ => choice(
       seq(optional($._module_path), $._expr_ident),
+      $.path_const_ident,
       $._local_expr_ident,
     ),
 
@@ -1262,6 +1269,7 @@ export default grammar({
       $.typed_initializer_list,
 
       $.field_expr,
+      $.enum_access_expr,
       $.maybe_deref_expr,
       $.type_access_expr,
       $.paren_expr,
@@ -1270,9 +1278,9 @@ export default grammar({
 
       // Compile-time expressions
       seq('lengthof', '(', $._expr, ')'),
-      '$vacount',
+      seq('$vaarg', '.', alias('len', $.ident)),
       '$vaconst',
-      '$vaarg',
+      seq('$vaarg', '[', $._expr, ']'),
       '$vaexpr',
       seq(
         choice(
@@ -1284,7 +1292,7 @@ export default grammar({
       ),
       seq('$embed', '(', commaSep($._expr), ')'),
       seq('$defined', '(', commaSep($._decl_or_expr), ')'),
-      seq('$feature', '(', $.const_ident, ')'),
+      seq('$feature', '(', choice($.ident, $.const_ident), ')'),
     )),
 
     // Initializers
@@ -1302,6 +1310,7 @@ export default grammar({
       $.param_path, // Bitstruct bool shorthand
       $._expr,
       // Splatting
+      seq('...', '$vaarg', optional(seq('[', $.range_expr, ']'))),
       seq('$vasplat', optional(seq('[', $.range_expr, ']'))),
       seq('...', $._expr),
     ),
@@ -1434,6 +1443,7 @@ export default grammar({
     call_arg: $ => choice(
       $._expr,
       // Splatting
+      seq('...', '$vaarg', optional(seq('[', $.range_expr, ']'))),
       seq('$vasplat', optional(seq('[', $.range_expr, ']'))),
       seq('...', $._expr),
       // Named arguments
@@ -1530,6 +1540,12 @@ export default grammar({
       $._access_ident_expr,
     ),
 
+    enum_access_expr: $ => prec(PREC.FIELD, seq(
+      field('argument', $.type),
+      '.',
+      field('field', $.access_ident),
+    )),
+
     maybe_deref_expr: $ => seq(
       prec(PREC.FIELD, seq(
         field('argument', $._expr),
@@ -1590,8 +1606,8 @@ export default grammar({
       $.ct_type_ident,
       seq(
         choice(
-          '$typeof',
-          '$typefrom',
+          '$Typeof',
+          '$Typefrom',
         ),
         $.paren_expr,
       ),

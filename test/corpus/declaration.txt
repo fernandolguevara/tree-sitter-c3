@@ -224,14 +224,15 @@ alias @intHello = foo::@hello{int};
   (alias_declaration
     (const_ident)
     (ident_expr
-      (module_resolution
-        (ident))
-      (module_resolution
-        (ident))
-      (const_ident)))
+      (path_const_ident
+        (module_resolution
+          (ident))
+        (module_resolution
+          (ident))
+        (const_ident))))
   (alias_declaration
     (ident)
-    (field_expr
+    (enum_access_expr
       (type
         (path_type_ident
           (type_ident)))
@@ -239,7 +240,7 @@ alias @intHello = foo::@hello{int};
         (ident))))
   (alias_declaration
     (ident)
-    (field_expr
+    (enum_access_expr
       (type
         (path_type_ident
           (module_resolution
@@ -250,7 +251,7 @@ alias @intHello = foo::@hello{int};
         (ident))))
   (alias_declaration
     (at_ident)
-    (field_expr
+    (enum_access_expr
       (type
         (path_type_ident
           (type_ident)))
@@ -258,7 +259,7 @@ alias @intHello = foo::@hello{int};
         (at_ident))))
   (alias_declaration
     (at_ident)
-    (field_expr
+    (enum_access_expr
       (type
         (path_type_ident
           (module_resolution
@@ -268,7 +269,7 @@ alias @intHello = foo::@hello{int};
         (at_ident))))
   (alias_declaration
     (at_ident)
-    (field_expr
+    (enum_access_expr
       (type
         (generic_type_ident
           (path_type_ident
@@ -285,15 +286,16 @@ alias @intHello = foo::@hello{int};
     (const_ident)
     (trailing_generic_expr
       (ident_expr
-        (module_resolution
-          (ident))
-        (const_ident))
+        (path_const_ident
+          (module_resolution
+            (ident))
+          (const_ident)))
       (generic_arg_list
         (type
           (base_type_name)))))
   (alias_declaration
     (ident)
-    (field_expr
+    (enum_access_expr
       (type
         (generic_type_ident
           (path_type_ident

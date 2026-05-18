@@ -20,6 +20,12 @@
 ; Constant
 (const_ident) @constant
 
+(path_const_ident
+  (module_resolution
+    (ident) @module)
+  (const_ident) @constant
+  (#set! priority 120))
+
 [
   "true"
   "false"
@@ -35,6 +41,12 @@
 ] @variable
 
 ; 1) Member
+(enum_access_expr
+  argument: (type) @type
+  field: (access_ident
+    (ident) @constant)
+  (#set! priority 120))
+
 (field_expr
   field: (access_ident
     (ident) @variable.member))
@@ -105,6 +117,7 @@
   "$eval"
   "$error"
   "$exec"
+  "$expand"
   "$feature"
   "$for"
   "$foreach"
@@ -113,14 +126,9 @@
   "$reflect"
   "$stringify"
   "$switch"
-  "$typefrom"
-  "$typeof"
-  "$vacount"
-  "$vatype"
-  "$vaconst"
+  "$Typefrom"
+  "$Typeof"
   "$vaarg"
-  "$vaexpr"
-  "$vasplat"
 ] @keyword.directive
 
 "assert" @keyword.debug
