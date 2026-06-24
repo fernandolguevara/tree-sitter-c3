@@ -228,6 +228,57 @@ module foo;
       (ident))))
 
 ================================================================================
+Deprecated Doc With Description Before Macro
+================================================================================
+<*
+ Loop over sockets. Caller must close unused sockets
+
+ @deprecated "use @loop_over_addresses"
+*>
+macro void @loop_over_ai(AddrInfo* ai; @body(NativeSocket fd, AddrInfo* ai))
+{
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (macro_declaration
+    (doc_comment
+      (doc_comment_text)
+      (doc_comment_contract
+        (at_ident)
+        (string_expr
+          (string_literal
+            (string_content)))))
+    (macro_header
+      (type
+        (base_type_name))
+      (at_ident))
+    (macro_param_list
+      (param
+        (type
+          (path_type_ident
+            (type_ident))
+          (type_suffix))
+        (ident))
+      (trailing_block_param
+        (at_ident)
+        (func_param_list
+          (param
+            (type
+              (path_type_ident
+                (type_ident)))
+            (ident))
+          (param
+            (type
+              (path_type_ident
+                (type_ident))
+              (type_suffix))
+            (ident)))))
+    (macro_func_body
+      (compound_stmt))))
+
+================================================================================
 Doc @ inside doc
 ================================================================================
 <*

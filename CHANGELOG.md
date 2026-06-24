@@ -1,20 +1,30 @@
 # tree-sitter-c3 Changelog
 
-## Unreleased
-Grammar parity updates against current `c3c` parser behavior.
+## 0.11.0
+- Added supertype `expression` (does not change tree structure but is matchable)
+- Added `ct_expr`, wrapping `$vaarg`, `$eval`, `$stringify`, `$reflect`, `lengthof`, `$embed`, `$defined`, `$feature`
+- Include `fn void() {}` style lambda in `lambda_expr`
+- `(bytes_expr (bytes_literal))` collapsed to `(bytes_literal)` (make consistent with string literals)
+- Fix poor error recovery due to external scanner not handling error state correctly and consuming all text
 
-- Support `const enum` declarations
-- Support enum associated values in brace form without `=` (`FOO { 1, 2 }`)
-- Support typed reference parameters (`Type& value`)
-- Broaden generic brace acceptance after base types (`usz{}`, `int{4}`, `$typeof(x){T}`)
-- Allow non-compound bodies in `do ... while` statements
-- Improve compile-time switch condition/case acceptance for type forms (for example `$switch $typeof(x):` and `$case int..float:`)
-- Drop deprecated `iXX`/`uXX` integer literal suffixes
-- Drop deprecated compile-time builtins (`$alignof`, `$sizeof`, `$kindof`, `$nameof`, `$extnameof`, `$qnameof`, `$offsetof`)
-- Add `$reflect(...)` expression support
-- Switch type member access from `Type.member` to `Type::member`
-- Add `untypedlist` as a base type
-- Keep named enum-associated fields (for example `FOO {a: 1}`) intentionally unsupported for now
+## 0.10.0
+Grammar updates for C3 0.8.0.
+
+- Extract `ct_error_stmt` from `ct_assert_stmt`
+- Removed `flat_path`
+- Removed `enum_arg`
+- Share `enum_spec` between enum and constdef
+- Enum/constdef values now take the form `(enum_constant args: (initializer_list))` for enum args and `(enum_constant '=' right: (_))` for constdef values 
+
+## 0.9.0
+Grammar updates for C3 0.7.11.
+
+- Added `defer_catch_ident`, wrapping `(catch ident)`
+- Added `import_path` node, combining `path_ident` and `attributes`
+- Extract semicolon from `declaration` and `const_declaration` (#50)
+- Support `.$abc` eval shorthand
+- Support doc comments on declarations
+- Support `constdef`
 
 ## 0.8.3
 Grammar updates for C3 0.7.8.

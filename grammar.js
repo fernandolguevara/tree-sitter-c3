@@ -27,8 +27,8 @@ const IDENT       = /_*[a-z][_a-zA-Z0-9]*/;
 const TYPE_IDENT  = /_*[A-Z][_A-Z0-9]*[a-z][_a-zA-Z0-9]*/;
 const CONST_IDENT = /_*[A-Z][_A-Z0-9]*/;
 
-// https://c3lang.github.io/c3-web/references/docs/precedence/
 // c3c/src/compiler/enums.h
+// c3c --list-precedence
 const PREC = {
   // Expressions
   ASSIGNMENT: 1,
@@ -38,15 +38,16 @@ const PREC = {
   LOGICAL_AND: 4,
   RELATIONAL: 5,
   ADD: 6,
-  BITWISE: 7,
-  SHIFT: 8,
-  MULTIPLY: 9,
+  ORELSE: 7,
+  BITWISE: 8,
+  SHIFT: 9,
+  MULTIPLY: 10,
   // Unary expressions
-  UNARY: 10,
+  UNARY: 11,
   // Trailing expressions
-  TRAILING: 11,
-  FIELD: 11,
-  SUBSCRIPT: 11,
+  TRAILING: 12,
+  FIELD: 12,
+  SUBSCRIPT: 12,
 };
 
 function commaSep(rule) {
@@ -84,9 +85,9 @@ function sepTrailing1(rule, separator) {
 function make_binary_expr($, table) {
   return choice(...table.map(([operator, precedence]) => {
     return prec.left(precedence, seq(
-      field('left', $._expr),
+      field('left', $.expression),
       field('operator', operator),
-      field('right', $._expr),
+      field('right', $.expression),
     ));
   }));
 }
@@ -107,11 +108,19 @@ export default grammar({
     $.block_comment_end_or_eof,
     $.doc_comment_text,
     $.real_literal,
+    $.error_sentinel,
   ],
 
   inline: $ => [
-    $._statement,
-    $._top_level_item,
+  ],
+
+  supertypes: $ => [
+    $.expression,
+  ],
+
+  conflicts: $ => [
+    [$.ct_switch_cond, $.expression],
+    [$.ct_case_cond, $.expression],
   ],
 
   word: $ => $.ident,
@@ -188,40 +197,36 @@ export default grammar({
 
     // Doc comments and contracts
     // -------------------------
-    // Optional ':' is deprecated
     _doc_comment_description: $ => seq(':', field('description', $.string_expr)),
     doc_comment_contract_descriptor: _ => token(/\[&?(?:in|out|inout)\]/),
     doc_comment_contract: $ => choice(
-      prec(3, seq(
+      seq(
         field('name', alias('@param', $.at_ident)),
         optional(field('mutability_contract', $.doc_comment_contract_descriptor)),
         field('parameter', choice($._arg_ident, '...')),
         optional($._doc_comment_description),
-      )),
-      prec(3, seq(
+      ),
+      seq(
         field('name', alias(choice('@ensure', '@require'), $.at_ident)),
-        commaSep1($._expr),
+        commaSep1($.expression),
         optional($._doc_comment_description),
-      )),
-      prec(3, seq(
+      ),
+      seq(
         field('name', alias('@return', $.at_ident)),
         choice(
           seq(
             '?',
-            commaSep1($._expr),
+            commaSep1($.expression),
             optional($._doc_comment_description),
           ),
-          field('description', $.string_expr),
+          optional(field('description', $.string_expr)),
         ),
-      )),
+      ),
       // Other @idents
-      prec(1, seq(
-        field('name', alias(choice('@pure', '@deprecated', '@note', '@warning'), $.at_ident)),
-      )),
-      prec(1, seq(
+      seq(
         field('name', $.at_ident),
-        field('description', $.string_expr),
-      )),
+        optional(field('description', $.string_expr)),
+      ),
     ),
     doc_comment: $ => seq(
       '<*',
@@ -302,12 +307,12 @@ export default grammar({
     _generic_param: $ => choice($.const_ident, $.type_ident),
     generic_param_list: $ => seq('<', commaSep1($._generic_param), '>'),
 
-    _generic_args: $ => commaSep1($._expr),
+    _generic_args: $ => commaSep1($.expression),
     generic_arg_list: $ => seq('{', optional($._generic_args), '}'),
 
     // Helpers
     // -------------------------
-    _assign_right_expr: $ => seq('=', field('right', $._expr)),
+    _assign_right_expr: $ => seq('=', field('right', $.expression)),
 
     _cond: $ => choice(
       choice($._try_unwrap_chain, $.catch_unwrap),
@@ -325,7 +330,7 @@ export default grammar({
       seq(
         field('type', $.type),
         optional(choice(
-          '...', // Deprecated, remove for C3 0.8
+          '...',
           seq('&', field('name', $.ident), optional($.attributes)),
           seq(optional('...'), field('name', choice($.ident, $.ct_ident)), optional($.attributes)),
           // Macro expression parameters
@@ -344,7 +349,7 @@ export default grammar({
       ),
     ),
 
-    param_default: $ => seq('=', field('right', choice('...', $._expr))),
+    param_default: $ => seq('=', field('right', choice('...', $.expression))),
     param: $ => seq($._parameter, optional($.param_default)),
     _parameters: $ => commaSepTrailing1($.param),
 
@@ -361,7 +366,6 @@ export default grammar({
       seq('[', ']', '='),
       'len',
       '~',
-      '<',
       '+',
       '-',
       '*',
@@ -370,10 +374,10 @@ export default grammar({
       '&',
       '|',
       '^',
+      '<',
       '<<',
       '>>',
       '==',
-      '!=',
       '+=',
       '-=',
       '*=',
@@ -386,7 +390,7 @@ export default grammar({
       '>>=',
     ),
 
-    attribute_arg: $ => choice($.overload_operator, $._expr),
+    attribute_arg: $ => choice($.overload_operator, $.expression),
     attribute_arg_list: $ => seq('(', commaSep1($.attribute_arg), ')'),
     attribute: $ => seq(
       field('name', $._attribute_name),
@@ -404,10 +408,11 @@ export default grammar({
       $.func_definition,
 
       $.ct_assert_stmt,
+      $.ct_error_stmt,
       $.ct_echo_stmt,
       $.ct_include_stmt,
-      $.ct_exec_stmt,
       $.ct_expand_stmt,
+      $.ct_exec_stmt,
 
       $.struct_declaration,
       $.enum_declaration,
@@ -418,6 +423,7 @@ export default grammar({
       $.typedef_declaration,
       $.attrdef_declaration,
       $.interface_declaration,
+      $.constdef_declaration,
     ),
 
     // Module
@@ -481,7 +487,7 @@ export default grammar({
           optional($.generic_param_list),
           optional($.attributes),
           '=',
-          choice($._expr, $.func_signature)
+          choice($.expression, $.func_signature)
         ),
       ),
       ';'
@@ -493,7 +499,7 @@ export default grammar({
       optional($.doc_comment),
       'faultdef',
       commaSepTrailing1(seq($.const_ident, optional($.attributes))),
-      ';',
+      ';'
     ),
 
     // Typedef
@@ -579,10 +585,10 @@ export default grammar({
       $.ident,
       optional(seq(
         ':',
-        $._expr,
+        $.expression,
         optional(seq(
           '..',
-          $._expr,
+          $.expression,
         ))
       )),
       optional($.attributes),
@@ -605,17 +611,16 @@ export default grammar({
       field('body', $.bitstruct_body),
     ),
 
-    // Enum
+    // Enum/Constdef
     // -------------------------
-    enum_arg: $ => choice(
-      seq('=', $._expr),
-      seq('{', commaSepTrailing($._expr), '}'),
-    ),
     enum_constant: $ => seq(
       optional($.doc_comment),
       field('name', $.const_ident),
       optional($.attributes),
-      field('args', optional($.enum_arg)),
+      optional(choice(
+        field('args', $.initializer_list), // Only for enum
+        $._assign_right_expr, // Only for constdef
+      )),
     ),
     enum_param: $ => seq(
       optional('inline'),
@@ -626,10 +631,9 @@ export default grammar({
     enum_spec: $ => prec.right(seq(
       ':',
       seq(
-        optional('const'),
-        optional('inline'),
+        optional('inline'), // Only for constdef
         optional(field('type', alias($._type_no_generics, $.type))),
-        optional($.enum_param_list)
+        optional($.enum_param_list), // Only for enum
       ),
     )),
     enum_body: $ => seq(
@@ -639,14 +643,19 @@ export default grammar({
     ),
     enum_declaration: $ => seq(
       optional($.doc_comment),
-      choice(
-        'enum',
-        'constdef',
-      ),
+      'enum',
       field('name', $.type_ident),
       optional($.interface_impl_list),
       optional($.enum_spec),
       optional($.generic_param_list),
+      optional($.attributes),
+      field('body', $.enum_body),
+    ),
+    constdef_declaration: $ => seq(
+      optional($.doc_comment),
+      'constdef',
+      field('name', $.type_ident),
+      optional($.enum_spec),
       optional($.attributes),
       field('body', $.enum_body),
     ),
@@ -706,8 +715,7 @@ export default grammar({
       $.func_param_list,
       optional($.generic_param_list),
       optional($.attributes),
-      // The body is made optional to improve error recovery for syntax highlighting (PR #41)
-      field('body', optional($.macro_func_body)),
+      field('body', $.macro_func_body),
     )),
 
     trailing_block_param: $ => seq(
@@ -730,7 +738,7 @@ export default grammar({
       ')',
     ),
 
-    implies_body: $ => seq('=>', field('body', $._expr)),
+    implies_body: $ => seq('=>', field('body', $.expression)),
 
     macro_func_body: $ => choice(
       seq('=>', $.call_expr),
@@ -779,8 +787,10 @@ export default grammar({
       $.assert_stmt,
       $.asm_block_stmt,
 
-      $.ct_echo_stmt,
       $.ct_assert_stmt,
+      $.ct_error_stmt,
+      $.ct_echo_stmt,
+      $.ct_expand_stmt,
       $.ct_if_stmt,
       $.ct_switch_stmt,
       $.ct_foreach_stmt,
@@ -800,7 +810,7 @@ export default grammar({
 
     // Expr Statement
     // -------------------------
-    expr_stmt: $ => seq($._expr, ';'),
+    expr_stmt: $ => seq($.expression, ';'),
 
     // Declaration Statement
     // -------------------------
@@ -817,7 +827,7 @@ export default grammar({
 
     // Return Statement
     // -------------------------
-    return_stmt: $ => seq('return', optional($._expr), ';'),
+    return_stmt: $ => seq('return', optional($.expression), ';'),
 
     // Continue Statement
     // -------------------------
@@ -842,7 +852,7 @@ export default grammar({
 
     // Assert Statement
     // -------------------------
-    assert_stmt: $ => seq('assert', '(', commaSep1($._expr), ')', ';'),
+    assert_stmt: $ => seq('assert', '(', commaSep1($.expression), ')', ';'),
 
     // Declaration
     // -------------------------
@@ -890,11 +900,11 @@ export default grammar({
 
     // Case Statement
     // -------------------------
-    case_range: $ => seq($._expr, '..', $._expr),
+    case_range: $ => seq($.expression, '..', $.expression),
     case_stmt: $ => seq(
       'case',
       field('value', choice(
-        $._expr,
+        $.expression,
         $.case_range,
       )),
       ':',
@@ -916,7 +926,7 @@ export default grammar({
       optional(
         seq(
           optional(seq($.label_target, ':')),
-          field('target', choice($._expr, 'default')),
+          field('target', choice($.expression, 'default')),
         ),
       ),
       ';'
@@ -942,7 +952,7 @@ export default grammar({
 
     // If-Catch
     // -------------------------
-    catch_unwrap_list: $ => commaSep1($._expr),
+    catch_unwrap_list: $ => commaSep1($.expression),
     catch_unwrap: $ => prec(1, seq(
       'catch',
       optional(seq(optional($.type), $.ident, '=')),
@@ -955,29 +965,31 @@ export default grammar({
     try_unwrap: $ => prec(PREC.LOGICAL_AND + 1, seq(
       'try',
       optional(seq(optional($.type), $.ident, '=')),
-      $._expr,
+      $.expression,
     )),
 
     _try_unwrap_chain: $ => seq(
       $.try_unwrap,
-      repeat(prec(PREC.LOGICAL_AND + 1, seq('&&', choice($.try_unwrap, $._expr)))),
+      repeat(prec(PREC.LOGICAL_AND + 1, seq('&&', choice($.try_unwrap, $.expression)))),
     ),
 
     // If Statement
     // -------------------------
-    if_stmt: $ => prec.right(seq(
+    if_stmt: $ => seq(
       'if',
       optional($.label),
       field('condition', $.paren_cond),
-      field('body', $._statement),
-      optional($.else_part),
-    )),
+      choice(
+        field('body', $._statement),
+        seq(field('body', $.compound_stmt), $.else_part),
+      ),
+    ),
     else_part: $ => seq(
       'else',
-      field('body', choice(
+      choice(
         $.if_stmt,
-        $._statement,
-      )),
+        field('body', $.compound_stmt),
+      ),
     ),
 
     // For Statement
@@ -997,7 +1009,7 @@ export default grammar({
     _decl_or_expr: $ => choice(
       $.var_declaration,
       alias($.single_declaration, $.declaration),
-      $._expr
+      $.expression
     ),
     comma_decl_or_expr: $ => commaSep1($._decl_or_expr),
 
@@ -1032,7 +1044,7 @@ export default grammar({
       optional(seq(field('index', $.foreach_var), ',')),
       field('value', $.foreach_var),
       ':',
-      field('collection', $._expr),
+      field('collection', $.expression),
       ')',
     ),
     foreach_stmt: $ => seq(
@@ -1056,7 +1068,7 @@ export default grammar({
     do_stmt: $ => seq(
       'do',
       optional($.label),
-      field('body', $._statement),
+      $.compound_stmt,
       seq(
         optional(
           seq(
@@ -1101,7 +1113,7 @@ export default grammar({
       $.asm_instr, commaSep($.asm_expr), ';',
     ),
     asm_block_stmt: $ => choice(
-      seq('asm', '(', $._expr, ')', optional($.at_ident), ';'),
+      seq('asm', '(', $.expression, ')', optional($.at_ident), ';'),
       seq('asm', optional($.at_ident), '{', repeat($.asm_stmt), '}'),
     ),
 
@@ -1113,40 +1125,41 @@ export default grammar({
 
     // Compile Time Assert Statement
     // -------------------------
-    ct_assert_stmt: $ => choice(
-      seq(
-        '$assert',
-        $._expr,
-        optional(seq(':', commaSep1($._expr))),
-        ';'
-      ),
-      seq(
-        '$error',
-        $._expr,
-        repeat(seq(',', $._expr)),
-        ';'
-      ),
+    ct_assert_stmt: $ => seq(
+      '$assert',
+      $.expression,
+      optional(seq(':', commaSep1($.expression))),
+      ';'
+    ),
+
+    // Compile Time Error Statement
+    // -------------------------
+    ct_error_stmt: $ => seq(
+      '$error',
+      $.expression,
+      repeat(seq(',', $.expression)),
+      ';'
     ),
 
     // Compile Time Include Statement
     // -------------------------
-    ct_include_stmt: $ => seq('$include', $.string_expr, ';'),
-
-    // Compile Time Exec Statement
-    // -------------------------
-    ct_exec_stmt: $ => seq('$exec', '(', commaSep($._expr), ')', optional($.attributes), ';'),
+    ct_include_stmt: $ => seq('$include', $.expression, optional($.attributes), ';'),
 
     // Compile Time Expand Statement
     // -------------------------
-    ct_expand_stmt: $ => seq('$expand', '(', $._expr, ')', optional($.attributes), ';'),
+    ct_expand_stmt: $ => seq('$expand', $.paren_expr, optional($.attributes), ';'),
+
+    // Compile Time Exec Statement
+    // -------------------------
+    ct_exec_stmt: $ => seq('$exec', '(', commaSep($.expression), ')', optional($.attributes), ';'),
 
     // Compile Time Echo Statement
     // -------------------------
-    ct_echo_stmt: $ => seq('$echo', $._expr, ';'),
+    ct_echo_stmt: $ => seq('$echo', $.expression, ';'),
 
     // Compile Time If Statement
     // -------------------------
-    ct_if_cond: $ => seq($._expr, ':'),
+    ct_if_cond: $ => seq($.expression, ':'),
     ct_else_stmt: $ => seq('$else', optional($.ct_stmt_body)),
     ct_if_stmt: $ => choice(
       seq('$if', $.ct_if_cond, optional($.ct_stmt_body), optional($.ct_else_stmt), '$endif'),
@@ -1156,8 +1169,8 @@ export default grammar({
     // -------------------------
     ct_case_cond: $ => choice(
       seq($._type_expr, '..', $._type_expr),
-      seq($._expr, '..', $._expr),
-      $._expr,
+      seq($.expression, '..', $.expression),
+      $.expression,
       $._type_expr,
     ),
     ct_case_stmt: $ => seq(
@@ -1167,7 +1180,7 @@ export default grammar({
       ),
       optional($.ct_stmt_body),
     ),
-    ct_switch_cond: $ => seq(choice($._expr, $._type_expr)),
+    ct_switch_cond: $ => seq(choice($.expression, $._type_expr)),
 
     _ct_switch: $ => seq('$switch', optional($.ct_switch_cond), ':'),
     ct_switch_stmt: $ => seq(
@@ -1192,7 +1205,7 @@ export default grammar({
       optional(seq(field('index', $.ct_ident), ',')),
       field('value', $.ct_ident),
       ':',
-      field('collection', $._expr),
+      field('collection', $.expression),
     ),
     ct_foreach_stmt: $ => seq(
       '$foreach',
@@ -1205,7 +1218,9 @@ export default grammar({
     ////////////////////////////
     // Expressions
     // -------------------------
-    _expr: $ => prec(0, choice(
+    expression: $ => choice(
+      $.paren_expr,
+
       $.assignment_expr,
       $.ternary_expr,
       $.lambda_expr,
@@ -1219,8 +1234,35 @@ export default grammar({
       $.update_expr,
       $.call_expr,
       $.subscript_expr,
-      $._base_expr,
-    )),
+
+      $.ident_expr,
+      $.field_expr,
+      $.enum_access_expr,
+      $.maybe_deref_expr,
+      $.type_access_expr,
+
+      'true',
+      'false',
+      'null',
+      $.integer_literal,
+      $.real_literal,
+      $.char_literal,
+      // Single literals have precedence over (string|bytes)_expr
+      prec(1, $.string_literal),
+      prec(1, $.raw_string_literal),
+      prec(1, $.bytes_literal),
+      $.string_expr,
+      $.bytes_expr,
+
+      $.builtin,
+      $.builtin_const,
+
+      $.initializer_list,
+      $.typed_initializer_list,
+
+      $.ct_expr,
+      $._type_expr,
+    ),
 
     // Base Expression
     // -------------------------
@@ -1234,73 +1276,38 @@ export default grammar({
       $.type,
       alias($.type_paren_expr, $.paren_expr),
     ),
-    type_paren_expr: $ => prec(2, seq('(', $._type_expr, ')')),
-
-    // Precedence over _expr
-    flat_path: $ => prec(1, seq(
-      $._base_expr,
-      optional($.param_path),
-    )),
+    type_paren_expr: $ => seq('(', $._type_expr, ')'),
 
     string_expr: $ => prec.right(repeat1(choice($.string_literal, $.raw_string_literal))),
     bytes_expr: $ => repeat1($.bytes_literal),
-    paren_expr: $ => seq('(', $._expr, ')'),
+    paren_expr: $ => seq('(', $.expression, ')'),
 
-    // Precedence over cast
-    typed_initializer_list: $ => prec(3, seq('(', $._type_expr, ')', $.initializer_list)),
+    // Precedence over type_paren_expr
+    typed_initializer_list: $ => prec(1, seq('(', $._type_expr, ')', $.initializer_list)),
 
-    _base_expr: $ => prec(2, choice(
-      'true',
-      'false',
-      'null',
-      $.builtin,
-      $.builtin_const,
-      $.integer_literal,
-      $.real_literal,
-      $.char_literal,
-      $.string_literal,
-      $.raw_string_literal,
-      $.string_expr,
-      $.bytes_expr,
-      $.ident_expr,
-      $._type_expr,
-
-      $.initializer_list,
-      $.typed_initializer_list,
-
-      $.field_expr,
-      $.enum_access_expr,
-      $.maybe_deref_expr,
-      $.type_access_expr,
-      $.paren_expr,
-
-      seq($.lambda_declaration, field('lambda_body', $.compound_stmt)),
-
-      // Compile-time expressions
-      seq('lengthof', '(', $._expr, ')'),
-      seq('$vaarg', '.', alias('len', $.ident)),
-      '$vaconst',
-      seq('$vaarg', '[', $._expr, ']'),
-      '$vaexpr',
+    // Compile-time expressions
+    ct_expr: $ => choice( 
+      '$vaarg',
       seq(
         choice(
           '$eval',
           '$stringify',
           '$reflect',
+          'lengthof',
         ),
         $.paren_expr,
       ),
-      seq('$embed', '(', commaSep($._expr), ')'),
+      seq('$embed', '(', commaSep($.expression), ')'),
       seq('$defined', '(', commaSep($._decl_or_expr), ')'),
-      seq('$feature', '(', choice($.ident, $.const_ident), ')'),
-    )),
+      seq('$feature', '(', $.const_ident, ')'),
+    ),
 
     // Initializers
     // -------------------------
-    // Precedence over _expr
+    // Precedence over expression
     param_path_element: $ => prec(1, choice(
-      seq('[', $._expr, ']'),
-      seq('[', $._expr, '..', $._expr, ']'),
+      seq('[', $.expression, ']'),
+      seq('[', $.expression, '..', $.expression, ']'),
       seq('.', $._access_ident_expr),
     )),
     param_path: $ => repeat1($.param_path_element),
@@ -1308,11 +1315,9 @@ export default grammar({
     initializer_element: $ => choice(
       seq($.param_path, $._assign_right_expr),
       $.param_path, // Bitstruct bool shorthand
-      $._expr,
+      $.expression,
       // Splatting
-      seq('...', '$vaarg', optional(seq('[', $.range_expr, ']'))),
-      seq('$vasplat', optional(seq('[', $.range_expr, ']'))),
-      seq('...', $._expr),
+      seq('...', $.expression),
     ),
 
     initializer_list: $ => seq('{', commaSepTrailing($.initializer_element), '}'),
@@ -1335,14 +1340,14 @@ export default grammar({
     ),
     assignment_expr: $ => prec.right(PREC.ASSIGNMENT, choice(
       seq(
-        field('left', $._expr),
+        field('left', $.expression),
         field('operator', $._assignment_op),
-        field('right', $._expr),
+        field('right', $.expression),
       ),
       seq(
         field('left', $.ct_type_ident),
         field('operator', '='),
-        field('right', $._expr),
+        field('right', $.expression),
       ),
     )),
 
@@ -1350,30 +1355,33 @@ export default grammar({
     // -------------------------
     ternary_expr: $ => prec.right(PREC.TERNARY, choice(
       seq(
-        field('condition', $._expr),
+        field('condition', $.expression),
         choice('?', '???'),
-        field('consequence', $._expr),
+        field('consequence', $.expression),
         ':',
-        field('alternative', $._expr),
+        field('alternative', $.expression),
       ),
     )),
 
     // Lambda Expression
     // -------------------------
-    lambda_expr: $ => prec.right(PREC.TERNARY, seq($.lambda_declaration, $.implies_body)),
+    lambda_expr: $ => prec.right(PREC.TERNARY, seq(
+      $.lambda_declaration,
+      field('lambda_body', choice($.implies_body, $.compound_stmt)),
+    )),
 
     // Elvis/or-else (?:, ??) Expression
     // -------------------------
-    elvis_orelse_expr: $ => prec.right(PREC.TERNARY, seq(
-      field('condition', $._expr),
+    elvis_orelse_expr: $ => prec.right(PREC.ORELSE, seq(
+      field('condition', $.expression),
       field('operator', choice('?:', '??')),
-      field('alternative', $._expr),
+      field('alternative', $.expression),
     )),
 
     // Optional Expression
     // -------------------------
     optional_expr: $ => prec.right(PREC.TERNARY, seq(
-      field('argument', $._expr),
+      field('argument', $.expression),
       field('operator', choice(
         '~',
         seq('~', '!'),
@@ -1386,7 +1394,7 @@ export default grammar({
       '(',
       field('type', $._type_expr),
       ')',
-      field('value', $._expr),
+      field('value', $.expression),
     )),
 
     // Unary Expression
@@ -1404,7 +1412,7 @@ export default grammar({
     ),
     unary_expr: $ => prec(PREC.UNARY, seq(
       field('operator', $._unary_op),
-      field('argument', $._expr),
+      field('argument', $.expression),
     )),
 
     // Binary Expression
@@ -1441,13 +1449,11 @@ export default grammar({
     // Call Expression
     // -------------------------
     call_arg: $ => choice(
-      $._expr,
+      $.expression,
       // Splatting
-      seq('...', '$vaarg', optional(seq('[', $.range_expr, ']'))),
-      seq('$vasplat', optional(seq('[', $.range_expr, ']'))),
-      seq('...', $._expr),
+      seq('...', $.expression),
       // Named arguments
-      seq(field('name', $._arg_ident), ':', optional('...'), $._expr),
+      seq(field('name', choice($._arg_ident, $.access_eval)), ':', optional('...'), $.expression),
     ),
 
     _call_args: $ => choice(
@@ -1463,7 +1469,7 @@ export default grammar({
     // Right precedence for `@require foo() @pure` doc contract
     call_inline_attributes: $ => prec.right(repeat1(alias(choice('@pure', '@inline', '@noinline'), $.at_ident))),
     call_expr: $ => prec.right(PREC.TRAILING, seq(
-      field('function', $._expr),
+      field('function', $.expression),
       field('arguments', $.call_arg_list),
       field('attributes', optional($.call_inline_attributes)),
       field('trailing', optional($.compound_stmt)),
@@ -1472,21 +1478,21 @@ export default grammar({
     // Postfix Update Expression (--/++)
     // -------------------------
     update_expr: $ => prec.right(PREC.TRAILING, seq(
-      field('argument', $._expr),
+      field('argument', $.expression),
       field('operator', choice('--', '++')),
     )),
 
     // Rethrow Expression
     // -------------------------
     rethrow_expr: $ => prec.right(PREC.TRAILING, seq(
-      field('argument', $._expr),
+      field('argument', $.expression),
       field('operator', choice('!', '!!')),
     )),
 
     // Trailing Generic Expression
     // -------------------------
     trailing_generic_expr: $ => prec.right(PREC.TRAILING, seq(
-      field('argument', $._expr),
+      field('argument', $.expression),
       field('operator', $.generic_arg_list),
     )),
 
@@ -1494,7 +1500,7 @@ export default grammar({
     // -------------------------
     _range_loc: $ => seq(
       optional('^'),
-      $._expr,
+      $.expression,
     ),
     range_expr: $ => seq(
       field('left', optional($._range_loc)),
@@ -1505,7 +1511,7 @@ export default grammar({
     // Subscript Expression
     // -------------------------
     subscript_expr: $ => prec.right(PREC.SUBSCRIPT, seq(
-      field('argument', $._expr),
+      field('argument', $.expression),
       '[',
       choice(
         field('index', $._range_loc),
@@ -1534,7 +1540,7 @@ export default grammar({
 
     field_expr: $ => seq(
       prec(PREC.FIELD, seq(
-        field('argument', $._expr),
+        field('argument', $.expression),
         '.',
       )),
       $._access_ident_expr,
@@ -1548,7 +1554,7 @@ export default grammar({
 
     maybe_deref_expr: $ => seq(
       prec(PREC.FIELD, seq(
-        field('argument', $._expr),
+        field('argument', $.expression),
         '.',
       )),
       seq(
@@ -1563,7 +1569,7 @@ export default grammar({
 
     type_access_expr: $ => seq(
       prec(PREC.FIELD, seq(
-        field('argument', $._type_expr),
+        field('argument', $.type),
         '::',
       )),
       $._access_ident_expr,
@@ -1611,20 +1617,19 @@ export default grammar({
         ),
         $.paren_expr,
       ),
-      '$vatype', // Followed by type_suffix with index
     )),
 
     generic_type_ident: $ => seq(
-      $._base_type,
+      $.path_type_ident,
       $.generic_arg_list,
     ),
 
     type_suffix: $ => choice(
       '*',
-      seq('[', $._expr, ']'),
+      seq('[', $.expression, ']'),
       seq('[', ']'),
       seq('[', '*', ']'),
-      seq('[<', $._expr, '>]', optional(alias('@simd', $.at_ident))),
+      seq('[<', $.expression, '>]', optional(alias('@simd', $.at_ident))),
       seq('[<', '*', '>]', optional(alias('@simd', $.at_ident))),
     ),
 
@@ -1634,12 +1639,12 @@ export default grammar({
         $.generic_type_ident
       ),
       repeat($.type_suffix),
-      optional(choice('~', '?')),
+      optional('?'),
     )),
     _type_no_generics: $ => prec.right(seq(
       $._base_type,
       repeat($.type_suffix),
-      optional(choice('~', '?')),
+      optional('?'),
     )),
   }
 });

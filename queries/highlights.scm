@@ -153,6 +153,7 @@
   "struct"
   "typedef"
   "union"
+  "constdef"
 ] @keyword.type
 
 [
@@ -288,7 +289,7 @@
 ; Builtin (constants)
 (builtin_const) @constant.builtin
 
-; Type Property (from `c3c --list-type-properties`)
+; Type Property
 (type_access_expr
   (access_ident
     (ident) @variable.builtin
